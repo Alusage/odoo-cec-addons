@@ -1,0 +1,67 @@
+<odoo>
+    <record id="view_cec_base_book_page_tree" model="ir.ui.view">
+        <field name="name">cec.base.book.page.tree</field>
+        <field name="model">cec_base.book.page</field>
+        <field name="arch" type="xml">
+            <tree string="Book Pages">       
+                <field name="page_number"/>
+                <field name="name"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_cec_base_book_page_form" model="ir.ui.view">
+        <field name="name">cec.base.book.page.form</field>
+        <field name="model">cec_base.book.page</field>
+        <field name="arch" type="xml">
+            <form string="Book Page">
+           <header>
+                <button name="action_assign_to_me" type="object" string="Me l'assigner" class="oe_highlight"/>
+                <field name="state" widget="statusbar" statusbar_visible="draft,assigned,in_progress,to_validate,done"/>      
+            </header>
+            <sheet>
+                <group>
+                    <field name="name" force_save="1" readonly="1"/>
+                    <group>
+                        <field name="page_number"/>
+                    </group>
+                    <group>
+                        <field name="book_id"/>
+                        <field name="assigned_user_ids" widget="many2many_tags"/>
+                    </group>
+                </group>
+                <group>
+                <field name="raw_content"/>
+                </group>
+                <notebook>
+                    <page string="Contributions">
+                        <field name="contribution_ids" no_label="1"/>
+                    </page>
+                    <page string="Analyse linguistique">
+                        <field name="content"/>
+                    </page>
+                </notebook>
+                
+            </sheet>
+             <!-- Attachment preview -->
+                    <div class="o_attachment_preview"/>
+                
+            <!-- Chatter -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids" options="{'post_refresh': 'always'}"/>
+                    </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_cec_base_book_page" model="ir.actions.act_window">
+        <field name="name">Book Pages</field>
+        <field name="res_model">cec_base.book.page</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_cec_base_book_page" name="Pages" parent="menu_book_root" action="action_cec_base_book_page" sequence="11"/>
+</odoo>

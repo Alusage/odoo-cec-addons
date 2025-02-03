@@ -1,0 +1,60 @@
+<odoo>
+    <record id="view_book_form" model="ir.ui.view">
+        <field name="name">book.form</field>
+        <field name="model">cec_base.book</field>
+        <field name="arch" type="xml">
+            <form string="Book">
+            
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                 <button class="oe_stat_button" type="object" name="action_show_pages" icon="fa-pencil-square-o" context="{'book_id': id, 'default_book_id': id}">
+                            <field string="Pages" name="page_count" widget="statinfo"/>
+                </button>
+            </div>
+                    <group>
+                        <field name="name"/>
+                        <field name="location"/>
+                        <field name="published_date"/>
+                    </group>
+                    <notebook>
+                        <page string="Pages">
+                            <field name="page_ids" nolabel="True"  context="{'default_book_id': id}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                 <!-- Attachment preview -->
+                    <div class="o_attachment_preview"/>
+                    
+                <!-- Chatter -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids" options="{'post_refresh': 'always'}"/>
+                    </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_book_tree" model="ir.ui.view">
+        <field name="name">book.tree</field>
+        <field name="model">cec_base.book</field>
+        <field name="arch" type="xml">
+            <tree string="Book">
+                <field name="name"/>
+                <field name="location"/>
+                <field name="published_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_book" model="ir.actions.act_window">
+        <field name="name">Books</field>
+        <field name="res_model">cec_base.book</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_book_root" name="CEC" sequence="10"/>
+    <menuitem id="menu_book" name="Books" parent="menu_book_root" action="action_book"/>
+
+    
+</odoo>
