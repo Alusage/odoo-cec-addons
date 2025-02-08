@@ -11,6 +11,32 @@
         </field>
     </record>
 
+    <record id="view_cec_base_book_page_kanban" model="ir.ui.view">
+        <field name="name">cec.base.book.page.kanban</field>
+        <field name="model">cec_base.book.page</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <strong>
+                                    <field name="book_id"/>
+                                </strong>
+                                <div>
+                                    <field name="page_number"/>
+                                </div>
+                                <div>
+                                    <field name="assigned_user_ids" widget="many2many_tags"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
     <record id="view_cec_base_book_page_form" model="ir.ui.view">
         <field name="name">cec.base.book.page.form</field>
         <field name="model">cec_base.book.page</field>
@@ -21,6 +47,11 @@
                 <field name="state" widget="statusbar" statusbar_visible="draft,assigned,in_progress,to_validate,done"/>      
             </header>
             <sheet>
+            <div class="oe_button_box" name="button_box">
+                 <button class="oe_stat_button" type="object" name="action_show_contribution_parts" icon="fa-pencil-square-o" context="{'page_id': id, 'default_page_id': id}">
+                            <field string="Contributions" name="contribution_part_count" widget="statinfo"/>
+                </button>
+            </div>
                 <group>
                     <field name="name" force_save="1" readonly="1"/>
                     <group>
@@ -36,7 +67,14 @@
                 </group>
                 <notebook>
                     <page string="Contributions">
-                        <field name="contribution_ids" no_label="1"/>
+                        <field name="contribution_ids" no_label="1" context="{'default_page_id': id}">
+                            <tree string="Contributions" editable="bottom">
+                                <field name="name" force_save="1" readonly="1"/>
+                                <field name="date"/>
+                                <field name="contributor_id"/>
+                                <field name="contribution_id"/>
+                            </tree>
+                        </field>
                     </page>
                     <page string="Analyse linguistique">
                         <field name="content"/>
@@ -60,7 +98,7 @@
     <record id="action_cec_base_book_page" model="ir.actions.act_window">
         <field name="name">Book Pages</field>
         <field name="res_model">cec_base.book.page</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
     </record>
 
     <menuitem id="menu_cec_base_book_page" name="Pages" parent="menu_book_root" action="action_cec_base_book_page" sequence="11"/>

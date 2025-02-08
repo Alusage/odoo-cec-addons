@@ -11,6 +11,8 @@
         'views/book_view.xml',
         'views/page_view.xml',
         "views/contribution_view.xml",
+        "views/contribution_part_view.xml",
+        "security/ir.model.access.csv",
     ],
     'demo': [
         # List your demo files here

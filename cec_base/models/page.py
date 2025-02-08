@@ -6,20 +6,36 @@ class BookPage(models.Model):
     _description = 'Book Page'
     _order = 'page_number asc'
 
+    @api.model
+    def _read_group_state_ids(self, stages, domain, order):
+        return [state[0] for state in [
+        ('draft', 'Bouillon'),
+        ('assigned', 'Affecté'),
+        ('in_progress', 'En cours'),
+        ('to_validate', 'À valider'),
+        ('done', 'Terminé')
+    ]]
+
     state = fields.Selection([
         ('draft', 'Bouillon'),
         ('assigned', 'Affecté'),
         ('in_progress', 'En cours'),
         ('to_validate', 'À valider'),
         ('done', 'Terminé')
-    ], string='State', default='draft', tracking=True)
+    ], string='State', default='draft', tracking=True, group_expand='_read_group_state_ids')
     name = fields.Char(string='Title', required=True)
-    raw_content = fields.Text(string='Raw Content')
+    raw_content = fields.Html(string='Raw Content')
     content = fields.Html(string='Content')
     page_number = fields.Integer(string='Page Number', required=True)
     book_id = fields.Many2one('cec_base.book', string='Book', required=True)
-    contribution_ids = fields.Many2many('cec_base.contribution', relation='page_contribution_rel', string='Contributions')
+    contribution_ids = fields.One2many('cec_base.contribution.part', "page_id", string='Contributions')
     assigned_user_ids = fields.Many2many('res.users', string='Assigned Users')
+    contribution_part_count = fields.Integer(string='Page Count', compute='_compute_contribution_part_count')
+
+    @api.depends('contribution_ids')
+    def _compute_contribution_part_count(self):
+        for page in self:
+            page.contribution_part_count = len(page.contribution_ids)
 
     @api.onchange('book_id', 'page_number')
     def _onchange_book_page(self):
@@ -36,3 +52,14 @@ class BookPage(models.Model):
             self.state = 'assigned'
         else:
             self.state = 'draft'
+
+    def action_show_contribution_parts(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Contributions',
+            'view_mode': 'tree,form',
+            'res_model': 'cec_base.contribution.part',
+            'domain': [('page_id', '=', self.id)],
+            'context': dict(self.env.context, default_page_id=self.id),
+        }

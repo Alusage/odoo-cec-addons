@@ -1,7 +1,7 @@
 <odoo>
-    <record id="view_contribution_tree" model="ir.ui.view">
+    <record id="view_contribution_part_tree" model="ir.ui.view">
         <field name="name">contribution.tree</field>
-        <field name="model">cec_base.contribution</field>
+        <field name="model">cec_base.contribution.part</field>
         <field name="arch" type="xml">
             <tree string="Contributions">
                 <field name="name"/>
@@ -11,20 +11,21 @@
         </field>
     </record>
 
-    <record id="view_contribution_form" model="ir.ui.view">
+    <record id="view_contribution_part_form" model="ir.ui.view">
         <field name="name">contribution.form</field>
-        <field name="model">cec_base.contribution</field>
+        <field name="model">cec_base.contribution.part</field>
         <field name="arch" type="xml">
-            <form string="Contribution">
-               <sheet>
+            <form string="Element de Contribution">
+            <sheet>
                 <group>
                     <field name="name" force_save="1" readonly="1"/>
                     <group>
-                        <field name="date"/>
-                        <field name="contributor_id"/>
+                        <field name="book_id"/>
+                        <field name="page_id"/>
+                        <field name="contribution_id"/>
                     </group>
                     <group>
-                        <field name="page_ids" widget="many2many_tags"/>
+                        <field name="assigned_user_ids" widget="many2many_tags"/>
                     </group>
                 </group>
                 <group>
@@ -50,11 +51,11 @@
         </field>
     </record>
 
-    <record id="action_contribution" model="ir.actions.act_window">
+    <record id="action_contribution_part" model="ir.actions.act_window">
         <field name="name">Contributions</field>
-        <field name="res_model">cec_base.contribution</field>
+        <field name="res_model">cec_base.contribution.part</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="menu_contribution" name="Contributions" parent="menu_book_root" action="action_contribution" sequence="12"/>
+    <menuitem id="menu_contribution_part" name="Elements de Contributions" parent="menu_book_root" action="action_contribution_part" sequence="14"/>
 </odoo>

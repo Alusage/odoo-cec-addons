@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cec_base_book,access_cec_base_book,model_cec_base_book,base.group_user,1,1,1,1
+access_cec_base_book_page,access_cec_base_book_page,model_cec_base_book_page,base.group_user,1,1,1,1
+access_cec_base_contribution,access_cec_base_contribution,model_cec_base_contribution,base.group_user,1,1,1,1
+access_cec_base_contribution_part,access_cec_base_contribution_part,model_cec_base_contribution_part,base.group_user,1,1,1,1
