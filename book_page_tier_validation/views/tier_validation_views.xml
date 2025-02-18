@@ -1,0 +1,34 @@
+<odoo>    
+    <record id="action_archive_page_tier_definition" model="ir.actions.act_window">
+        <field name="name">Page tier definition</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tier.definition</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('model_id.model','=','cec_base.book.page')]</field>
+        <field name="context">{'default_model_id': 'cec_base.book.page'}</field>
+    </record>
+    <record id="action_archive_page_tier_exception" model="ir.actions.act_window">
+        <field name="name">Page tier exceptions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tier.validation.exception</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p
+                class="o_view_nocontent_smiling_face"
+            >Create a new Validation Exception!</p>
+            <p
+            >Once created, you can decide which fields you want to be editable when the record:</p>
+            <ul>
+                <li>It's in the validation process</li>
+                <li>It's fully validated</li>
+            </ul>
+        </field>
+        <field name="domain">[('model_id.model','=','cec_base.book.page')]</field>
+        <field name="context">{'default_model_id': 'cec_base.book.page'}</field>
+    </record>
+
+    <menuitem id="menu_book_archive_config" name="Configuration" parent="cec_base.menu_book_root" groups="cec_base.group_book_archive_admin" sequence="100"/>
+    <menuitem id="menu_page_tier_definition" name="Page tier definition" parent="menu_book_archive_config" action="action_archive_page_tier_definition" sequence="10"/>
+    <menuitem id="menu_page_tier_exceptions" name="Page tier exceptions" parent="menu_book_archive_config" action="action_archive_page_tier_exception" sequence="20"/>
+
+</odoo>
