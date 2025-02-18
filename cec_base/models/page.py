@@ -1,4 +1,5 @@
-from odoo import api,models, fields
+from odoo import api, models, fields
+import pdb
 
 class BookPage(models.Model):
     _name = 'cec_base.book.page'
@@ -45,6 +46,7 @@ class BookPage(models.Model):
     def action_assign_to_me(self):
         self.ensure_one()
         self.assigned_user_ids = [(4, self.env.uid)]
+        self._onchange_assigned_user_ids()
 
     @api.onchange('assigned_user_ids')
     def _onchange_assigned_user_ids(self):
@@ -63,3 +65,7 @@ class BookPage(models.Model):
             'domain': [('page_id', '=', self.id)],
             'context': dict(self.env.context, default_page_id=self.id),
         }
+    
+    def action_validate_page(self):
+        self.ensure_one()
+        self.state = 'to_validate'
