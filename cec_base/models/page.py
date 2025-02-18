@@ -1,5 +1,4 @@
 from odoo import api, models, fields
-import pdb
 
 class BookPage(models.Model):
     _name = 'cec_base.book.page'
@@ -45,7 +44,7 @@ class BookPage(models.Model):
 
     def action_assign_to_me(self):
         self.ensure_one()
-        self.assigned_user_ids = [(4, self.env.uid)]
+        self.sudo().assigned_user_ids = [(4, self.env.uid)]
         self._onchange_assigned_user_ids()
 
     @api.onchange('assigned_user_ids')
@@ -61,7 +60,7 @@ class BookPage(models.Model):
             'type': 'ir.actions.act_window',
             'name': 'Contributions',
             'view_mode': 'tree,form',
-            'res_model': 'cec_base.contribution.part',
+            'res_model': 'cec_base.contribution_part',
             'domain': [('page_id', '=', self.id)],
             'context': dict(self.env.context, default_page_id=self.id),
         }

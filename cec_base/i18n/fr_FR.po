@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-18 12:34+0000\n"
-"PO-Revision-Date: 2025-02-18 12:34+0000\n"
+"POT-Creation-Date: 2025-02-18 18:18+0000\n"
+"PO-Revision-Date: 2025-02-18 18:18+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -54,6 +54,16 @@ msgstr "Status d'activité"
 #: model:ir.model.fields,field_description:cec_base.field_cec_base_contribution_part__activity_type_icon
 msgid "Activity Type Icon"
 msgstr "Icône du type d'activité"
+
+#. module: cec_base
+#: model:res.groups,name:cec_base.group_book_archive_admin
+msgid "Administrator"
+msgstr "Administrateur"
+
+#. module: cec_base
+#: model:ir.module.category,name:cec_base.module_category_book_archive
+msgid "Archives"
+msgstr "Archives"
 
 #. module: cec_base
 #: model_terms:ir.ui.view,arch_db:cec_base.view_cec_base_book_page_form
@@ -136,6 +146,11 @@ msgid "Contribution elements"
 msgstr "Éléments de contribution"
 
 #. module: cec_base
+#: model:ir.model,name:cec_base.model_cec_base_contribution_part
+msgid "Contribution part"
+msgstr "Élément de contribution"
+
+#. module: cec_base
 #: model:ir.actions.act_window,name:cec_base.action_contribution
 #: model:ir.actions.act_window,name:cec_base.action_contribution_part
 #: model:ir.model.fields,field_description:cec_base.field_cec_base_book_page__contribution_ids
@@ -149,6 +164,7 @@ msgstr "Contributions"
 #. module: cec_base
 #: model:ir.model.fields,field_description:cec_base.field_cec_base_contribution__contributor_id
 #: model:ir.model.fields,field_description:cec_base.field_cec_base_contribution_part__contributor_id
+#: model:res.groups,name:cec_base.group_book_archive_contributor
 msgid "Contributor"
 msgstr "Contributeur"
 
@@ -177,7 +193,7 @@ msgstr "Date"
 #. module: cec_base
 #: model:ir.model.fields,field_description:cec_base.field_cec_base_book__description
 msgid "Description"
-msgstr "Déscription"
+msgstr "Description"
 
 #. module: cec_base
 #: model:ir.model.fields,field_description:cec_base.field_cec_base_book__display_name
@@ -196,11 +212,6 @@ msgstr "Terminé"
 #: model:ir.model.fields.selection,name:cec_base.selection__cec_base_book_page__state__draft
 msgid "Draft"
 msgstr "Brouillon"
-
-#. module: cec_base
-#: model:ir.model,name:cec_base.model_cec_base_contribution_part
-msgid "Contribution part"
-msgstr "Élément de contribution"
 
 #. module: cec_base
 #: model:ir.model.fields,field_description:cec_base.field_cec_base_book__message_follower_ids
@@ -456,6 +467,11 @@ msgstr "Évaluations"
 #: model:ir.model.fields,field_description:cec_base.field_cec_base_contribution_part__raw_content
 msgid "Raw Content"
 msgstr "Contenu brut"
+
+#. module: cec_base
+#: model:res.groups,name:cec_base.group_book_archive_reader
+msgid "Reader"
+msgstr "Lecteur"
 
 #. module: cec_base
 #: model:ir.model.fields,field_description:cec_base.field_cec_base_book__activity_user_id
