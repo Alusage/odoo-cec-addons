@@ -43,7 +43,7 @@
         <field name="arch" type="xml">
             <form string="Book Page">
             <header>
-                <button name="action_assign_to_me" type="object" string="Me l'assigner" class="oe_highlight" invisible="state != 'draft'"/>
+                <button name="action_assign_to_me" type="object" string="Assign to me" class="oe_highlight" invisible="state != 'draft'"/>
                 <button name="action_validate_page" type="object" string="Validate" class="oe_highlight" invisible="state not in ['assigned','in_progress']"/>
                 <field name="state" widget="statusbar" statusbar_visible="draft,assigned,in_progress,to_validate,done" options="{'clickable':'1'}"/>      
             </header>
@@ -77,7 +77,7 @@
                             </tree>
                         </field>
                     </page>
-                    <page string="Analyse linguistique">
+                    <page string="Linguistic Analysis">
                         <field name="content"/>
                     </page>
                 </notebook>

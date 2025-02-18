@@ -31,7 +31,7 @@
                 <field name="raw_content"/>
                 </group>
                 <notebook>
-                    <page string="Analyse linguistique">
+                    <page string="Linguistic analysis">
                         <field name="content"/>
                     </page>
                 </notebook>

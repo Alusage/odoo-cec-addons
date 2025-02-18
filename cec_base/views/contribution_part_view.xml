@@ -15,7 +15,7 @@
         <field name="name">contribution.form</field>
         <field name="model">cec_base.contribution.part</field>
         <field name="arch" type="xml">
-            <form string="Element de Contribution">
+            <form string="Contribution element">
             <sheet>
                 <group>
                     <field name="name" force_save="1" readonly="1"/>
@@ -32,7 +32,7 @@
                 <field name="raw_content"/>
                 </group>
                 <notebook>
-                    <page string="Analyse linguistique">
+                    <page string="Linguistic analysis">
                         <field name="content"/>
                     </page>
                 </notebook>
@@ -57,5 +57,5 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="menu_contribution_part" name="Elements de Contributions" parent="menu_book_root" action="action_contribution_part" sequence="14"/>
+    <menuitem id="menu_contribution_part" name="Contribution elements" parent="menu_book_root" action="action_contribution_part" sequence="14"/>
 </odoo>

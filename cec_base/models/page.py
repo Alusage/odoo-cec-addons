@@ -10,19 +10,19 @@ class BookPage(models.Model):
     @api.model
     def _read_group_state_ids(self, stages, domain, order):
         return [state[0] for state in [
-        ('draft', 'Bouillon'),
-        ('assigned', 'Affecté'),
-        ('in_progress', 'En cours'),
-        ('to_validate', 'À valider'),
-        ('done', 'Terminé')
+        ('draft', 'Draft'),
+        ('assigned', 'Assigned'),
+        ('in_progress', 'In progress'),
+        ('to_validate', 'To validate'),
+        ('done', 'Done')
     ]]
 
     state = fields.Selection([
-        ('draft', 'Bouillon'),
-        ('assigned', 'Affecté'),
-        ('in_progress', 'En cours'),
-        ('to_validate', 'À valider'),
-        ('done', 'Terminé')
+        ('draft', 'Draft'),
+        ('assigned', 'Assigned'),
+        ('in_progress', 'In progress'),
+        ('to_validate', 'To validate'),
+        ('done', 'Done')
     ], string='State', default='draft', tracking=True, group_expand='_read_group_state_ids')
     name = fields.Char(string='Title', required=True)
     raw_content = fields.Html(string='Raw Content')
