@@ -22,7 +22,7 @@ class Book(models.Model):
         return {
             'type': 'ir.actions.act_window',
             'name': 'Pages',
-            'view_mode': 'tree,form',
+            'view_mode': 'kanban,tree,form',
             'res_model': 'cec_base.book.page',
             'domain': [('book_id', '=', self.id)],
             'context': dict(self.env.context, default_book_id=self.id),

@@ -15,7 +15,7 @@ class ContributionPart(models.Model):
     content = fields.Html(string='Content', tracking=True)
     book_id = fields.Many2one(related="page_id.book_id", string='Book', required=True)
     assigned_user_ids = fields.Many2many('res.users', string='Assigned Users')
-
+    
     @api.onchange('page_id', 'contributor_id')
     def _onchange_book_page(self):
         if self.page_id:
