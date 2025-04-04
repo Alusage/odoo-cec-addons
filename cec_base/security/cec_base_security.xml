@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="0">
+
+    <record id="cec_base.module_category_book_archive" model="ir.module.category">
+        <field name="name">Archives</field>
+        <field name="sequence">3</field>
+    </record>
+
+    <record id="cec_base.group_book_archive_reader" model="res.groups">
+        <field name="name">Reader</field>
+        <field name="category_id" ref="cec_base.module_category_book_archive"/>
+    </record>
+
+    <record id="cec_base.group_book_archive_contributor" model="res.groups">
+        <field name="name">Contributor</field>
+        <field name="category_id" ref="cec_base.module_category_book_archive"/>
+        <field name="implied_ids" eval="[(4, ref('cec_base.group_book_archive_reader'))]"/>
+    </record>
+
+    <record id="cec_base.group_book_archive_admin" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="category_id" ref="cec_base.module_category_book_archive"/>
+        <field name="implied_ids" eval="[(4, ref('cec_base.group_book_archive_contributor'))]"/>
+    </record>
+
+    <record id="book_archive_rule_page_contributor_users" model="ir.rule">
+        <field name="name">book.archive.page.contributors</field>
+        <field name="model_id" ref="cec_base.model_cec_base_book_page"/>
+        <field name="domain_force">[('assigned_user_ids', 'in', user.id)]</field>
+        <field name="groups" eval="[(4, ref('cec_base.group_book_archive_contributor'))]"/>
+        <field name="perm_read" eval="False"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="book_archive_rule_contribution_contributor_users" model="ir.rule">
+        <field name="name">book.archive.contribution.contributors</field>
+        <field name="model_id" ref="cec_base.model_cec_base_contribution"/>
+        <field name="domain_force">[('contributor_id', '=', user.partner_id.id)]</field>
+        <field name="groups" eval="[(4, ref('cec_base.group_book_archive_contributor'))]"/>
+        <field name="perm_read" eval="False"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="book_archive_rule_admin" model="ir.rule">
+        <field name="name">book.archive.page.administrators</field>
+        <field name="model_id" ref="cec_base.model_cec_base_book_page"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('cec_base.group_book_archive_admin'))]"/>
+        <field name="perm_read" eval="False"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+</data>
+</odoo>

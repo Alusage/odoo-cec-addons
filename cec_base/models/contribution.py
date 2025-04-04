@@ -3,7 +3,7 @@ from odoo import api,models, fields
 
 class ContributionPart(models.Model):
     _name = 'cec_base.contribution.part'
-    _description = 'Element de Contribution'
+    _description = 'Contribution part'
     _inherit = ['mail.thread.main.attachment', 'mail.activity.mixin']
 
     name = fields.Char(string='Name', required=True)

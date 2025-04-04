@@ -1,4 +1,4 @@
-from odoo import api,models, fields
+from odoo import api, models, fields
 
 class BookPage(models.Model):
     _name = 'cec_base.book.page'
@@ -9,19 +9,19 @@ class BookPage(models.Model):
     @api.model
     def _read_group_state_ids(self, stages, domain, order):
         return [state[0] for state in [
-        ('draft', 'Bouillon'),
-        ('assigned', 'Affecté'),
-        ('in_progress', 'En cours'),
-        ('to_validate', 'À valider'),
-        ('done', 'Terminé')
+        ('draft', 'Draft'),
+        ('assigned', 'Assigned'),
+        ('in_progress', 'In progress'),
+        ('to_validate', 'To validate'),
+        ('done', 'Done')
     ]]
 
     state = fields.Selection([
-        ('draft', 'Bouillon'),
-        ('assigned', 'Affecté'),
-        ('in_progress', 'En cours'),
-        ('to_validate', 'À valider'),
-        ('done', 'Terminé')
+        ('draft', 'Draft'),
+        ('assigned', 'Assigned'),
+        ('in_progress', 'In progress'),
+        ('to_validate', 'To validate'),
+        ('done', 'Done')
     ], string='State', default='draft', tracking=True, group_expand='_read_group_state_ids')
     name = fields.Char(string='Title', required=True)
     raw_content = fields.Html(string='Raw Content')
@@ -44,7 +44,8 @@ class BookPage(models.Model):
 
     def action_assign_to_me(self):
         self.ensure_one()
-        self.assigned_user_ids = [(4, self.env.uid)]
+        self.sudo().assigned_user_ids = [(4, self.env.uid)]
+        self._onchange_assigned_user_ids()
 
     @api.onchange('assigned_user_ids')
     def _onchange_assigned_user_ids(self):
@@ -59,7 +60,11 @@ class BookPage(models.Model):
             'type': 'ir.actions.act_window',
             'name': 'Contributions',
             'view_mode': 'tree,form',
-            'res_model': 'cec_base.contribution.part',
+            'res_model': 'cec_base.contribution_part',
             'domain': [('page_id', '=', self.id)],
             'context': dict(self.env.context, default_page_id=self.id),
         }
+    
+    def action_validate_page(self):
+        self.ensure_one()
+        self.state = 'to_validate'
