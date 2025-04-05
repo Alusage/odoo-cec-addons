@@ -80,7 +80,7 @@
                         </field>
                     </page>
                     <page string="Linguistic Analysis">
-                        <field name="content"/>
+                        <field name="content"  widget="code" options="{'mode': 'xml'}"/>
                     </page>
                 </notebook>
                 

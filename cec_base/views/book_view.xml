@@ -18,7 +18,7 @@
                     </group>
                     <notebook>
                         <page string="Pages">
-                            <field name="page_ids" nolabel="True"  context="{'default_book_id': id}"/>
+                            <field name="page_ids" nolabel="True"  readonly="1" context="{'default_book_id': id}"/>
                         </page>
                     </notebook>
                 </sheet>
