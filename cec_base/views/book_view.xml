@@ -26,11 +26,7 @@
                     <div class="o_attachment_preview"/>
                     
                 <!-- Chatter -->
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids" groups="base.group_user"/>
-                        <field name="activity_ids"/>
-                        <field name="message_ids" options="{'post_refresh': 'always'}"/>
-                    </div>
+                    <chatter reload_on_follower="True"/>
             </form>
         </field>
     </record>
@@ -39,18 +35,18 @@
         <field name="name">book.tree</field>
         <field name="model">cec_base.book</field>
         <field name="arch" type="xml">
-            <tree string="Book">
+            <list string="Book">
                 <field name="name"/>
                 <field name="location"/>
                 <field name="published_date"/>
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="action_book" model="ir.actions.act_window">
         <field name="name">Books</field>
         <field name="res_model">cec_base.book</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,list,form</field>
     </record>
 
     <menuitem id="menu_book_root" name="CEC" sequence="10"/>

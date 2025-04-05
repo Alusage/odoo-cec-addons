@@ -3,11 +3,12 @@
         <field name="name">cec.base.book.page.tree</field>
         <field name="model">cec_base.book.page</field>
         <field name="arch" type="xml">
-            <tree string="Book Pages">       
+            <list string="Book Pages">  
+                <field name="sequence" widget="handle"/>     
                 <field name="page_number"/>
                 <field name="name"/>
                 <field name="state" widget="badge"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -24,7 +25,7 @@
                                     <field name="book_id"/>
                                 </strong>
                                 <div>
-                                    <field name="page_number"/>
+                                    Page <field name="page_number"/> - <field name="date"/>
                                 </div>
                                 <div>
                                     <field name="assigned_user_ids" widget="many2many_tags"/>
@@ -42,9 +43,10 @@
         <field name="model">cec_base.book.page</field>
         <field name="arch" type="xml">
             <form string="Book Page">
-           <header>
-                <button name="action_assign_to_me" type="object" string="Me l'assigner" class="oe_highlight"/>
-                <field name="state" widget="statusbar" statusbar_visible="draft,assigned,in_progress,to_validate,done"/>      
+            <header>
+                <button name="action_assign_to_me" type="object" string="Assign to me" class="oe_highlight" invisible="state != 'draft'"/>
+                <button name="action_validate_page" type="object" string="Validate" class="oe_highlight" invisible="state not in ['assigned','in_progress']"/>
+                <field name="state" widget="statusbar" statusbar_visible="draft,assigned,in_progress,to_validate,done" options="{'clickable':'1'}"/>      
             </header>
             <sheet>
             <div class="oe_button_box" name="button_box">
@@ -56,6 +58,7 @@
                     <field name="name" force_save="1" readonly="1"/>
                     <group>
                         <field name="page_number"/>
+                        <field name="date"/>
                     </group>
                     <group>
                         <field name="book_id"/>
@@ -68,15 +71,15 @@
                 <notebook>
                     <page string="Contributions">
                         <field name="contribution_ids" no_label="1" context="{'default_page_id': id}">
-                            <tree string="Contributions" editable="bottom">
+                            <list string="Contributions" editable="bottom">
                                 <field name="name" force_save="1" readonly="1"/>
                                 <field name="date"/>
                                 <field name="contributor_id"/>
                                 <field name="contribution_id"/>
-                            </tree>
+                            </list>
                         </field>
                     </page>
-                    <page string="Analyse linguistique">
+                    <page string="Linguistic Analysis">
                         <field name="content"/>
                     </page>
                 </notebook>
@@ -86,11 +89,7 @@
                     <div class="o_attachment_preview"/>
                 
             <!-- Chatter -->
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids" groups="base.group_user"/>
-                        <field name="activity_ids"/>
-                        <field name="message_ids" options="{'post_refresh': 'always'}"/>
-                    </div>
+                <chatter reload_on_follower="True"/>
             </form>
         </field>
     </record>
@@ -98,7 +97,7 @@
     <record id="action_cec_base_book_page" model="ir.actions.act_window">
         <field name="name">Book Pages</field>
         <field name="res_model">cec_base.book.page</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban,list,form</field>
     </record>
 
     <menuitem id="menu_cec_base_book_page" name="Pages" parent="menu_book_root" action="action_cec_base_book_page" sequence="11"/>

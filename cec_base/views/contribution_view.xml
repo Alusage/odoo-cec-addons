@@ -3,11 +3,11 @@
         <field name="name">contribution.tree</field>
         <field name="model">cec_base.contribution</field>
         <field name="arch" type="xml">
-            <tree string="Contributions">
+            <list string="Contributions">
                 <field name="name"/>
                 <field name="date"/>
                 <field name="contributor_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -31,7 +31,7 @@
                 <field name="raw_content"/>
                 </group>
                 <notebook>
-                    <page string="Analyse linguistique">
+                    <page string="Linguistic analysis">
                         <field name="content"/>
                     </page>
                 </notebook>
@@ -41,11 +41,7 @@
                     <div class="o_attachment_preview"/>
                 
             <!-- Chatter -->
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids" groups="base.group_user"/>
-                        <field name="activity_ids"/>
-                        <field name="message_ids" options="{'post_refresh': 'always'}"/>
-                    </div>
+                <chatter reload_on_follower="True"/>
             </form>
         </field>
     </record>
@@ -53,7 +49,7 @@
     <record id="action_contribution" model="ir.actions.act_window">
         <field name="name">Contributions</field>
         <field name="res_model">cec_base.contribution</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_contribution" name="Contributions" parent="menu_book_root" action="action_contribution" sequence="12"/>

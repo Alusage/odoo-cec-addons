@@ -1,4 +1,4 @@
-from odoo import api,models, fields
+from odoo import api, models, fields
 
 class BookPage(models.Model):
     _name = 'cec_base.book.page'
@@ -7,23 +7,19 @@ class BookPage(models.Model):
     _order = 'page_number asc'
 
     @api.model
-    def _read_group_state_ids(self, stages, domain, order):
-        return [state[0] for state in [
-        ('draft', 'Bouillon'),
-        ('assigned', 'Affecté'),
-        ('in_progress', 'En cours'),
-        ('to_validate', 'À valider'),
-        ('done', 'Terminé')
-    ]]
+    def _read_group_state_ids(self, stages, domain):
+        return [value[0] for value in self._fields['state'].selection]
 
     state = fields.Selection([
-        ('draft', 'Bouillon'),
-        ('assigned', 'Affecté'),
-        ('in_progress', 'En cours'),
-        ('to_validate', 'À valider'),
-        ('done', 'Terminé')
+        ('draft', 'Draft'),
+        ('assigned', 'Assigned'),
+        ('in_progress', 'In progress'),
+        ('to_validate', 'To validate'),   
+        ('to_anonymize', 'To anonymize'),
+        ('done', 'Done')
     ], string='State', default='draft', tracking=True, group_expand='_read_group_state_ids')
     name = fields.Char(string='Title', required=True)
+    date = fields.Date(string='Date', default=fields.Date.context_today, tracking=True)
     raw_content = fields.Html(string='Raw Content')
     content = fields.Html(string='Content')
     page_number = fields.Integer(string='Page Number', required=True)
@@ -31,6 +27,7 @@ class BookPage(models.Model):
     contribution_ids = fields.One2many('cec_base.contribution.part', "page_id", string='Contributions')
     assigned_user_ids = fields.Many2many('res.users', string='Assigned Users')
     contribution_part_count = fields.Integer(string='Page Count', compute='_compute_contribution_part_count')
+    sequence = fields.Integer(string='Sequence', default=1)
 
     @api.depends('contribution_ids')
     def _compute_contribution_part_count(self):
@@ -44,7 +41,8 @@ class BookPage(models.Model):
 
     def action_assign_to_me(self):
         self.ensure_one()
-        self.assigned_user_ids = [(4, self.env.uid)]
+        self.sudo().assigned_user_ids = [(4, self.env.uid)]
+        self._onchange_assigned_user_ids()
 
     @api.onchange('assigned_user_ids')
     def _onchange_assigned_user_ids(self):
@@ -58,8 +56,12 @@ class BookPage(models.Model):
         return {
             'type': 'ir.actions.act_window',
             'name': 'Contributions',
-            'view_mode': 'tree,form',
-            'res_model': 'cec_base.contribution.part',
+            'view_mode': 'list,form',
+            'res_model': 'cec_base.contribution_part',
             'domain': [('page_id', '=', self.id)],
             'context': dict(self.env.context, default_page_id=self.id),
         }
+    
+    def action_validate_page(self):
+        self.ensure_one()
+        self.state = 'to_validate'

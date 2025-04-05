@@ -1,0 +1,137 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* book_page_tier_validation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-18 17:55+0000\n"
+"PO-Revision-Date: 2025-02-18 17:55+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: book_page_tier_validation
+#: model:ir.model,name:book_page_tier_validation.model_cec_base_book_page
+msgid "Book Page"
+msgstr "Page"
+
+#. module: book_page_tier_validation
+#: model:ir.model.fields,field_description:book_page_tier_validation.field_cec_base_book_page__can_review
+msgid "Can Review"
+msgstr "Peut valider"
+
+#. module: book_page_tier_validation
+#: model:ir.ui.menu,name:book_page_tier_validation.menu_book_archive_config
+msgid "Configuration"
+msgstr "Configuration"
+
+#. module: book_page_tier_validation
+#: model_terms:ir.actions.act_window,help:book_page_tier_validation.action_archive_page_tier_exception
+msgid "Create a new Validation Exception!"
+msgstr "Créé une nouvelle exception de validation!"
+
+#. module: book_page_tier_validation
+#: model:ir.model.fields,field_description:book_page_tier_validation.field_cec_base_book_page__has_comment
+msgid "Has Comment"
+msgstr "A un commentaire"
+
+#. module: book_page_tier_validation
+#: model:ir.model.fields,field_description:book_page_tier_validation.field_cec_base_book_page__hide_reviews
+msgid "Hide Reviews"
+msgstr "Masquer les validations"
+
+#. module: book_page_tier_validation
+#: model:ir.model.fields,help:book_page_tier_validation.field_cec_base_book_page__has_comment
+msgid "If set, Allow the reviewer to leave a comment on the review."
+msgstr "Si coché, permet au validateur de laisser un commentaire sur sa validation"
+
+#. module: book_page_tier_validation
+#: model_terms:ir.actions.act_window,help:book_page_tier_validation.action_archive_page_tier_exception
+msgid "It's fully validated"
+msgstr "C'est entièrement validé"
+
+#. module: book_page_tier_validation
+#: model_terms:ir.actions.act_window,help:book_page_tier_validation.action_archive_page_tier_exception
+msgid "It's in the validation process"
+msgstr "C'est en cours de validation"
+
+#. module: book_page_tier_validation
+#: model:ir.model.fields,field_description:book_page_tier_validation.field_cec_base_book_page__need_validation
+msgid "Need Validation"
+msgstr "Requiert une validation"
+
+#. module: book_page_tier_validation
+#: model:ir.model.fields,field_description:book_page_tier_validation.field_cec_base_book_page__next_review
+msgid "Next Review"
+msgstr "Validation suivante"
+
+#. module: book_page_tier_validation
+#: model_terms:ir.actions.act_window,help:book_page_tier_validation.action_archive_page_tier_exception
+msgid ""
+"Once created, you can decide which fields you want to be editable when the "
+"record:"
+msgstr ""
+"Une fois créé, vous pouvez décider quels champs sont modifiables quand "
+"l'enregistrement :"
+
+#. module: book_page_tier_validation
+#: model:ir.actions.act_window,name:book_page_tier_validation.action_archive_page_tier_definition
+#: model:ir.ui.menu,name:book_page_tier_validation.menu_page_tier_definition
+msgid "Page tier definition"
+msgstr "Définition des validations de pages"
+
+#. module: book_page_tier_validation
+#: model:ir.actions.act_window,name:book_page_tier_validation.action_archive_page_tier_exception
+#: model:ir.ui.menu,name:book_page_tier_validation.menu_page_tier_exceptions
+msgid "Page tier exceptions"
+msgstr "Exceptions des validations de pages"
+
+#. module: book_page_tier_validation
+#: model:ir.model.fields,field_description:book_page_tier_validation.field_cec_base_book_page__rejected
+msgid "Rejected"
+msgstr "Rejeté"
+
+#. module: book_page_tier_validation
+#: model:ir.model.fields,field_description:book_page_tier_validation.field_cec_base_book_page__rejected_message
+msgid "Rejected Message"
+msgstr "Message de rejet"
+
+#. module: book_page_tier_validation
+#: model:ir.model.fields,field_description:book_page_tier_validation.field_cec_base_book_page__reviewer_ids
+msgid "Reviewers"
+msgstr "Validateurs"
+
+#. module: book_page_tier_validation
+#: model:ir.model,name:book_page_tier_validation.model_tier_definition
+msgid "Tier Definition"
+msgstr "Définition de tier validateur"
+
+#. module: book_page_tier_validation
+#: model:ir.model.fields,field_description:book_page_tier_validation.field_cec_base_book_page__to_validate_message
+msgid "To Validate Message"
+msgstr "Message pour validation"
+
+#. module: book_page_tier_validation
+#: model:ir.model.fields,field_description:book_page_tier_validation.field_cec_base_book_page__validated
+msgid "Validated"
+msgstr "Validé"
+
+#. module: book_page_tier_validation
+#: model:ir.model.fields,field_description:book_page_tier_validation.field_cec_base_book_page__validated_message
+msgid "Validated Message"
+msgstr "Message de validation"
+
+#. module: book_page_tier_validation
+#: model:ir.model.fields,field_description:book_page_tier_validation.field_cec_base_book_page__validation_status
+msgid "Validation Status"
+msgstr "Status de validation"
+
+#. module: book_page_tier_validation
+#: model:ir.model.fields,field_description:book_page_tier_validation.field_cec_base_book_page__review_ids
+msgid "Validations"
+msgstr "Validations"

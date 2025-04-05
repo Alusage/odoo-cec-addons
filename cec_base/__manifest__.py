@@ -1,8 +1,8 @@
 {
     'name': 'CEC Base',
-    'version': '17.0.1.0.0',
+    'version': '18.0.1.0.0',
     'summary': 'Base module for CEC customizations',
-    'description': 'This module provides the base functionalities for CEC customizations in Odoo 17.0.',
+    'description': 'This module provides the base functionalities for CEC customizations in Odoo 18.0.',
     'author': 'Nicolas JEUDY',
     'website': 'https://www.yourcompanywebsite.com',
     'category': 'Custom',
@@ -11,7 +11,8 @@
         'views/book_view.xml',
         'views/page_view.xml',
         "views/contribution_view.xml",
-        "views/contribution_part_view.xml",
+        "views/contribution_part_view.xml",        
+        "security/cec_base_security.xml",
         "security/ir.model.access.csv",
     ],
     'demo': [
